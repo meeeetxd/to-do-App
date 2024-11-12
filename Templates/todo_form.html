@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Add/Edit Task{% endblock %}
+
+{% block content %}
+<h2>{% if task.id %}Edit{% else %}Add{% endif %} Task</h2>
+
+<form action="" method="post" style="display: flex; flex-direction: column;">
+    {% csrf_token %}
+    <label for="title">Task Title:</label>
+    <input type="text" name="title" id="title" value="{{ form.title.value }}" style="padding: 0.5em; margin-bottom: 1em; border-radius: 4px; border: 1px solid #ccc;">
+    
+    <label for="completed">Completed:</label>
+    <input type="checkbox" name="completed" id="completed" {% if form.completed.value %}checked{% endif %}>
+
+    <button type="submit" class="btn" style="margin-top: 1em;">Save</button>
+</form>
+{% endblock %}

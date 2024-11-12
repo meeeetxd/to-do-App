@@ -1,0 +1,33 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}To-Do List{% endblock %}
+
+{% block content %}
+    <h2>Your To-Do List</h2>
+
+   
+    {% if todos %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for todo in todos %}
+                <li style="margin: 0.5em 0; padding: 0.5em; background-color: #f0f0f0; border-radius: 4px; display: flex; align-items: center; justify-content: space-between;">
+                    <span>
+                         <input type="checkbox" 
+                               {% if todo.completed %}checked{% endif %}
+                               onclick="window.location='{% url 'todo_toggle' todo.id %}'" 
+                               style="margin-right: 0.5em;"> 
+                        <strong>{{ todo.title }}</strong> 
+                        {% if todo.completed %}
+                            <em>(Done)</em> 
+                        {% endif %}
+                    </span>
+                    <div>
+                        <a href="{% url 'todo_edit' todo.id %}" class="btn">Edit</a>
+                        <a href="{% url 'todo_delete' todo.id %}" class="btn" style="background-color: #d9534f;">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasks available. <a href="{% url 'todo_create' %}">Add one now!</a></p>
+    {% endif %}
+{% endblock %}
