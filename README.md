@@ -61,5 +61,3 @@ Access the App: Open your browser and go to http://127.0.0.1:8000.
 Deployment
 To deploy this application online, follow the steps for platforms like Render, Heroku, or PythonAnywhere.
 
-License
-This project is open-source and available under the MIT License.
